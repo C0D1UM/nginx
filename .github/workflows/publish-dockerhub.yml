@@ -29,19 +29,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: c0d1um/nginx
+      # - name: Extract metadata (tags, labels) for Docker
+      #   id: meta
+      #   uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+      #   with:
+      #     images: c0d1um/nginx
       
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            ENABLED_MODULES=headers-more
+      - name: Build Docker image
+        run: docker build --build-arg ENABLED_MODULES="headers-more" --tag c0d1um/nginx:latest .
+      - name: Push Docker Image to DockerHub
+        run: docker push c0d1um/nginx:latest
+        # uses: docker/build-push-action@v4
+        # with:
+        #   context: .
+        #   file: ./Dockerfile
+        #   push: true
+        #   tags: ${{ steps.meta.outputs.tags }}
+        #   labels: ${{ steps.meta.outputs.labels }}
+        #   build-args: |
+        #     ENABLED_MODULES=headers-more
