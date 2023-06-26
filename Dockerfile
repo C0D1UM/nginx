@@ -7,6 +7,8 @@ RUN set -ex \
         exit 1; \
     fi
 
+RUN echo "$ENABLED_MODULES"
+
 COPY ./ /modules/
 
 RUN set -ex \
