@@ -44,4 +44,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args:
-            ENABLED_MODULES="headers-more"
+            ENABLED_MODULES=headers-more
