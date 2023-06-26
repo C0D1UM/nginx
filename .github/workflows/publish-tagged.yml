@@ -23,4 +23,4 @@ jobs:
         run: docker build --build-arg ENABLED_MODULES="headers-more"  --cache-from c0d1um/nginx:latest --tag c0d1um/nginx:${{  github.ref_name }} .
 
       - name: Push Docker Image to DockerHub
-        run: docker push c0d1um/nginx:latest
+        run: docker push c0d1um/nginx:${{  github.ref_name }}
