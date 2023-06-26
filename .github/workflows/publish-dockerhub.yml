@@ -36,7 +36,7 @@ jobs:
       #     images: c0d1um/nginx
       
       - name: Build Docker image
-        run: docker build --build-arg ENABLED_MODULES="headers-more" --tag c0d1um/nginx:latest .
+        run: docker --version && docker build --build-arg ENABLED_MODULES="headers-more" --tag c0d1um/nginx:latest .
       - name: Push Docker Image to DockerHub
         run: docker push c0d1um/nginx:latest
         # uses: docker/build-push-action@v4
