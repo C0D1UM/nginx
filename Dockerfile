@@ -62,6 +62,7 @@ COPY --from=builder /tmp/packages /tmp/packages
 RUN set -ex \
     && apt update \
     && . /tmp/packages/modules.env \
+    && ls /tmp/packages/ \
     && for module in $BUILT_MODULES; do \
            apt install --no-install-suggests --no-install-recommends -y /tmp/packages/nginx-module-${module}_${NGINX_VERSION}*.deb; \
        done \
